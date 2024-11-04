@@ -689,11 +689,14 @@ $btn-mb: 0.5rem;
   overflow-y: auto;
   width: $sidebar-width;
   // background: var(--sidebar-bg);
-  background: url("/assets/img/base/sidebar_bg.png");
-  background-size: 100% 100%;
+  background: url("/assets/img/base/sidebar_bg2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
 
   border-right: 1px solid var(--sidebar-border-color);
+
+  color: floralwhite;
 
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none; /* IE and Edge */

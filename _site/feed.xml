@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Yeong Rok n roll</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2024-11-04T20:04:20+09:00</updated>
+  <updated>2024-11-05T17:28:15+09:00</updated>
   <author>
     <name>song yeong rok</name>
     <uri>http://localhost:4000/</uri>
@@ -17,6 +17,30 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Test</title>
+    <link href="http://localhost:4000/posts/test/" rel="alternate" type="text/html" title="Test" />
+    <published>2024-11-05T12:33:00+09:00</published>
+  
+    <updated>2024-11-05T12:33:00+09:00</updated>
+  
+    <id>http://localhost:4000/posts/test/</id>
+    <content src="http://localhost:4000/posts/test/" />
+    <author>
+      <name>cotes</name>
+    </author>
+
+  
+    
+    <category term="Demo" />
+    
+  
+
+  <summary>Examples of text, typography, math equations, diagrams, flowcharts, pictures, videos, and more.</summary>
+
+  </entry>
 
   
   <entry>

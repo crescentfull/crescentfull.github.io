@@ -19,9 +19,9 @@ conda activate "가상환경 이름"
 ### Database 생성
 **mysql을 미리 설치해야 한다**
 ```sql
-$ mysql -u root -p
-명령어 입력 후 mysql로 전환
+$ mysql -u root -p # 명령어 입력 후 mysql로 전환
 
+# 데이터베이스 생성
 mysql> create database NAME character set utf8mb4 collate utf*mb4_general_ci; 
 ```
 

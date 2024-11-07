@@ -26,10 +26,6 @@ image: https://images.velog.io/images/sicksong/post/9b18ad03-2c95-4c78-9b88-a15e
  👨‍👧‍👦 **Front-End** 3명 : [강성구](https://github.com/seonggookang), [김현진](https://github.com/71summernight), [정경훈](https://github.com/kyunghoon1017) <br/>
  👨‍👧‍👦 **Back-End** 3명 : [김주현](https://github.com/kjhabc2002), [이기용](https://github.com/leeky940926), [송영록](https://github.com/crescentfull)
 
-## 🎬 프로젝트 구현 영상
-
-- 🔗 [영상 링크] : 추후 재업데이트 예정
-
 ## ⚙ 적용 기술
 - **Front-End** : HTML5, CSS3, React, SASS, JSX
 - **Back-End** : Python, Django, MySQL, jwt, bcypt, AWS RDS, AWS EC2

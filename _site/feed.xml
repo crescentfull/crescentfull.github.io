@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Yeong Rok n roll</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2024-11-05T23:00:22+09:00</updated>
+  <updated>2024-11-07T14:40:49+09:00</updated>
   <author>
     <name>song yeong rok</name>
     <uri>http://localhost:4000/</uri>
@@ -17,30 +17,6 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
-
-  
-  <entry>
-    <title>Test</title>
-    <link href="http://localhost:4000/posts/test/" rel="alternate" type="text/html" title="Test" />
-    <published>2024-11-05T12:33:00+09:00</published>
-  
-    <updated>2024-11-05T12:33:00+09:00</updated>
-  
-    <id>http://localhost:4000/posts/test/</id>
-    <content src="http://localhost:4000/posts/test/" />
-    <author>
-      <name>youngroknroll</name>
-    </author>
-
-  
-    
-    <category term="Demo" />
-    
-  
-
-  <summary>Examples of text, typography, math equations, diagrams, flowcharts, pictures, videos, and more.</summary>
-
-  </entry>
 
   
   <entry>
@@ -65,6 +41,78 @@
   
 
   <summary>Jekyll로 블로그 시작하기: 테스트 포스팅</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Kream 사이트 클론 프로젝트</title>
+    <link href="http://localhost:4000/posts/kream_clone_project/" rel="alternate" type="text/html" title="Kream 사이트 클론 프로젝트" />
+    <published>2022-01-06T10:00:00+09:00</published>
+  
+    <updated>2022-01-06T10:00:00+09:00</updated>
+  
+    <id>http://localhost:4000/posts/kream_clone_project/</id>
+    <content src="http://localhost:4000/posts/kream_clone_project/" />
+    <author>
+      <name>song yeong rok</name>
+    </author>
+
+  
+    
+    <category term="Project" />
+    
+  
+
+  <summary>Kream 사이트 클론 프로젝트 소개</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Spao 사이트 클론 프로젝트</title>
+    <link href="http://localhost:4000/posts/Spao_clone_project/" rel="alternate" type="text/html" title="Spao 사이트 클론 프로젝트" />
+    <published>2022-01-05T10:00:00+09:00</published>
+  
+    <updated>2022-01-05T10:00:00+09:00</updated>
+  
+    <id>http://localhost:4000/posts/Spao_clone_project/</id>
+    <content src="http://localhost:4000/posts/Spao_clone_project/" />
+    <author>
+      <name>song yeong rok</name>
+    </author>
+
+  
+    
+    <category term="Project" />
+    
+  
+
+  <summary>Spao 사이트 클론 프로젝트 소개</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Django project 초기세팅</title>
+    <link href="http://localhost:4000/posts/Django_Project_%EC%B4%88%EA%B8%B0%EC%84%B8%ED%8C%85/" rel="alternate" type="text/html" title="Django project 초기세팅" />
+    <published>2022-01-04T10:00:00+09:00</published>
+  
+    <updated>2024-11-06T19:42:53+09:00</updated>
+  
+    <id>http://localhost:4000/posts/Django_Project_%EC%B4%88%EA%B8%B0%EC%84%B8%ED%8C%85/</id>
+    <content src="http://localhost:4000/posts/Django_Project_%EC%B4%88%EA%B8%B0%EC%84%B8%ED%8C%85/" />
+    <author>
+      <name>song yeong rok</name>
+    </author>
+
+  
+    
+    <category term="Django" />
+    
+  
+
+  <summary>Django project 초기 세팅을 하는 방법</summary>
 
   </entry>
 

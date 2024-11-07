@@ -4,6 +4,7 @@ description: "Spao 사이트 클론 프로젝트 소개"
 date: 2022-01-05 10:00:00 +0900
 categories: [Project]
 tags: [Django, project, python, mysql, git, backend, frontend]
+image: https://images.velog.io/images/sicksong/post/9b18ad03-2c95-4c78-9b88-a15e5a618968/%E1%84%89%E1%85%B3%E1%84%91%E1%85%A1%E1%84%8B%E1%85%A9%20%E1%84%86%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%AB.gif
 ---
 
 ![](https://images.velog.io/images/sicksong/post/9b18ad03-2c95-4c78-9b88-a15e5a618968/%E1%84%89%E1%85%B3%E1%84%91%E1%85%A1%E1%84%8B%E1%85%A9%20%E1%84%86%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%AB.gif)

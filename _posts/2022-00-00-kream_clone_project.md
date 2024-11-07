@@ -49,8 +49,19 @@ Endpoint documentation - [Postman API](https://documenter.getpostman.com/view/17
 ### BACKEND
 
 #### 송영록
+> 로그인 구현
+
+![logincode](image-2.png)
+- python decorator 활용
+- 로그인 성공 시 토큰 발급(jwt)
+- 로그인 실패 시 예외처리
+- jwt.decode() 함수를 통해 토큰 검증
+- 디코딩한 토큰에서 user_id 추출, user모델에서 해당 user_id 조회 후 가져옴
+- 추출한 사용자를 request.user에 저장, 이후 로그인 상태 유지
 
 > 상세 페이지
+
+![detailpage](image-1.png)
 - 구매, 판매 가격 입찰데이터 join하여 filter로 출력
 - 제품이 없을 경우 'product_id_not_exist' 반환
 - 주문 목록은 주문일시가 빠른 시간부터 정렬

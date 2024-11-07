@@ -133,6 +133,7 @@ class DetailProductView(View) :
 - 제품 ID, 제품명, 브랜드명, 제품 발매가격, 모델 번호, 해당 제품 이미지, 현재 가격(입찰 없을 경우 none), 구매가격, 판매가격, 총 관심상품 등록 수  >>> dictionary json 반환
 
 > 상품 리스트 출력 API(ProductView)
+
 ````python
     def get(self, request, menu_name, category_name) :
         try :

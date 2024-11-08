@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Yeong Rok n roll</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2024-11-07T14:40:49+09:00</updated>
+  <updated>2024-11-08T17:07:10+09:00</updated>
   <author>
     <name>song yeong rok</name>
     <uri>http://localhost:4000/</uri>
@@ -50,7 +50,7 @@
     <link href="http://localhost:4000/posts/kream_clone_project/" rel="alternate" type="text/html" title="Kream 사이트 클론 프로젝트" />
     <published>2022-01-06T10:00:00+09:00</published>
   
-    <updated>2022-01-06T10:00:00+09:00</updated>
+    <updated>2024-11-08T16:26:16+09:00</updated>
   
     <id>http://localhost:4000/posts/kream_clone_project/</id>
     <content src="http://localhost:4000/posts/kream_clone_project/" />
@@ -61,6 +61,8 @@
   
     
     <category term="Project" />
+    
+    <category term="project" />
     
   
 
@@ -74,7 +76,7 @@
     <link href="http://localhost:4000/posts/Spao_clone_project/" rel="alternate" type="text/html" title="Spao 사이트 클론 프로젝트" />
     <published>2022-01-05T10:00:00+09:00</published>
   
-    <updated>2022-01-05T10:00:00+09:00</updated>
+    <updated>2024-11-08T16:26:16+09:00</updated>
   
     <id>http://localhost:4000/posts/Spao_clone_project/</id>
     <content src="http://localhost:4000/posts/Spao_clone_project/" />
@@ -85,6 +87,8 @@
   
     
     <category term="Project" />
+    
+    <category term="project" />
     
   
 

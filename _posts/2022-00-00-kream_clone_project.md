@@ -82,46 +82,47 @@ def login_decorator(func):
 > 상세 페이지
 
 ```python
+path('/<int:product_id>', DetailProductView.as_view())
+```
+
+```python
 class DetailProductView(View) :
-    def get(self, request, id) :
-        try :      
+    def get(self, request, product_id) :
+        try :    
+            buy_price_filter  = (Q(productsize__bidding__bidding_position_id = 2) & Q(productsize__bidding__bidding_status_id = 1))
+            sell_price_filter = (Q(productsize__bidding__bidding_position_id = 1) & Q(productsize__bidding__bidding_status_id = 1))
 
-            for product in DetailedProduct.objects.filter(product_id=id) :
+            if not Product.objects.filter(id = product_id).exists():
+                return JsonResponse({'MESSAGE':'product_id_not_exist'}, status = 404)
+            
+            product  = Product.objects\
+                                    .annotate(buy_price = Min('productsize__bidding__price', filter = buy_price_filter), 
+                                            sell_price = Max('productsize__bidding__price', filter = sell_price_filter))\
+                                    .get(id = product_id)
+                                                    
+            orders   = Order.objects.\
+                                    filter(bidding__product_size__product_id = product_id).\
+                                    order_by('-created_at')
+            wishlist = len(Wishlist.objects.filter(id=product_id).all())
+            
+            product_detail = [{
+                                'product_id'      : product.id,
+                                'name'            : product.name,
+                                'brand_name'      : product.brand.name,
+                                'release_price'   : product.release_price,
+                                'model_number'    : product.model_number,
+                                'image_list'      : [image.image_url for image in product.productimage_set.all()],
+                                'recent_price'    : orders.first().bidding.price if orders.exists() else None,
+                                'buy_price'       : product.buy_price,
+                                'sell_price'      : product.sell_price,
+                                'total_wishlist'  : wishlist,
+                            }]
+            return JsonResponse({'product_detail' : product_detail}, status=200)
 
-                posting_info = [{
-                    "posting_id"      : posting.id,
-                    "posting_writer"  : User.objects.get(id=posting.user_id).name,
-                    "posting_title"   : posting.title,
-                    "posting_content" : posting.content,
-                    "posting_image"   : [image.urls for image in Image.objects.filter(posting_id=posting.id)],
-                    "posting_date"    : posting.created_at.strftime('%Y-%m-%d'),
-                    "comment_info"    : [{
-                        "posting_id"      : posting.id,
-                        "comment_id"      : comment.id,
-                        "comment_writer"  : User.objects.get(id=comment.user_id).name,
-                        "comment_content" : comment.content,
-                        "comment_date"    : comment.created_at.strftime('%Y-%m-%d')
-                    } for comment in Comment.objects.filter(posting=posting.id).order_by('created_at')]
-                } for posting in Posting.objects.filter(product_id=product.product_id).order_by('-created_at')]
-
-            goods_detail = [{
-                "product_id"    : id,
-                "name"          : Product.objects.get(id=id).name,
-                "price"         : Product.objects.get(id=id).price,
-                "colors"        : [Color.objects.get(id=color['color_id']).name for color in DetailedProduct.objects.filter(product_id=id).values('color_id')],
-                "size"          : [Size.objects.get(id=size['size_id']).name for size in DetailedProduct.objects.filter(product_id=id).values('size_id')],
-                "image_list"    : [image.urls for image in Image.objects.filter(product_id=id)],
-                "posting_info"  : posting_info,
-                "posting_count" : Posting.objects.filter(product_id=id).count(),
-            }]
-                    
-            return JsonResponse({'goods_detail' : goods_detail}, status=200)
-
-        except AttributeError :
-            return JsonResponse({'message' : 'AttributeError'}, status=400)
-        
-        except TypeError :
-            return JsonResponse({'message' : 'TypeError'}, status=400)
+        except AttributeError as e :
+            return JsonResponse({'message' : f'{e}'}, status=400)        
+        except TypeError as e :
+            return JsonResponse({'message' : f'{e}'}, status=400)
 ```
 
 - 구매, 판매 가격 입찰데이터 join하여 filter로 출력
@@ -191,6 +192,17 @@ goods = [{
 - 제품 데이터를 출력할 때 제품 이미지, 제품 색상, 제품 리뷰 수를 출력하기 위해 딕셔너리를 활용하여 ```제품 데이터 딕셔너리 goods```을 정의
 
 > 브랜드 리스트 출력 API(BrandView)
+```python
+class BrandView(View):
+    def get(self, request):
+            brands = Brand.objects.all()
+
+            brand_list = [{
+                        'brand_id'   : brand.id,
+                        'brand_name' : brand.name,
+                    } for brand in brands]
+            return JsonResponse({'brand_list' : brand_list}, status = 200)
+```
 - 메인 페이지, 제품 페이지 상단 브랜드 출력을 위하여 API 작성
 
 

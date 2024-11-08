@@ -2,7 +2,7 @@
 title: "Kream 사이트 클론 프로젝트"
 description: "Kream 사이트 클론 프로젝트 소개"
 date: 2022-01-06 10:00:00 +0900
-categories: [Project]
+categories: [Project, kream_project]
 tags: [Django, project, python, mysql, git, backend, frontend]
 image: https://user-images.githubusercontent.com/78721108/139569482-db28b424-c233-4df5-9520-4da68e528439.gif
 ---
@@ -45,8 +45,6 @@ image: https://user-images.githubusercontent.com/78721108/139569482-db28b424-c23
 Endpoint documentation - [Postman API](https://documenter.getpostman.com/view/17773566/2s7ZE5r4jy)
 
 ### BACKEND
-
-#### 송영록
 > 로그인 구현
 
 ```python

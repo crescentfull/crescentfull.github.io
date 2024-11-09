@@ -2,7 +2,7 @@
 title: "Kream 사이트 클론 프로젝트"
 description: "Kream 사이트 클론 프로젝트 소개"
 date: 2022-01-06 10:00:00 +0900
-categories: [Project, project]
+categories: [Project]
 tags: [Django, project, python, mysql, git, backend, frontend]
 image: https://user-images.githubusercontent.com/78721108/139569482-db28b424-c233-4df5-9520-4da68e528439.gif
 ---
@@ -49,29 +49,91 @@ Endpoint documentation - [Postman API](https://documenter.getpostman.com/view/17
 
 ```python
 import jwt
+import requests
+from json.decoder import JSONDecodeError
 
-from django.conf import settings
-from django.http import JsonResponse
-from my_settings import MY_SECRET_KEY, MY_ALGORITHMS
+from django.http  import JsonResponse
+from django.views import View
 
-from .models import User
+from users.models import User
+from my_settings  import SECRET_KEY, ALGORITHMS
+
+class KakaoLogin(View):
+    def get(self, request):
+        try: 
+            token = request.headers.get('Authorization')
+
+            if token == None:
+                return JsonResponse({'messsage': 'INVALID_TOKEN'}, status=401)
+
+            kakao_account = requests.get('https://kapi.kakao.com/v2/user/me', headers = {'Authorization': f'Bearer {token}'}).json()
+            print('::::kakao_account:', kakao_account)
+
+            if not User.objects.filter(kakao_id=kakao_account['id']).exists():
+                user = User.objects.create(
+                    kakao_id = kakao_account['id'],
+                    email    = kakao_account['kakao_account']['email'],
+                    name     = kakao_account['kakao_account']['profile']['nickname']
+                )
+            user = User.objects.get(kakao_id=kakao_account['id'])
+
+            access_token = jwt.encode({'user_id': user.id}, SECRET_KEY, algorithm=ALGORITHMS)
+
+            return JsonResponse({'access_token': access_token}, status=201)
+
+        except KeyError:
+            return JsonResponse({'message': 'KEY_ERROR'}, status=400)
+        
+        except JSONDecodeError:
+            return JsonResponse({'message': 'JSON_DECODE_ERROR'}, status=400)
+
+        except jwt.DecodeError:
+            return JsonResponse({'message': 'JWT_DECODE_ERROR'}, status=400)
+
+        except ConnectionError:
+            return JsonResponse({'message': 'CONNECTION_ERROR'}, status=400)
+```
+- 카카오 연동 로그인 구현
+- ```Authorization``` 헤더에서 카카오 엑세스 토큰을 받아옴
+- ```request.get()``` 함수를 통해 카카오 API 엔드포인트로 사용자 정보 요청, json 형식으로 받아옴
+- 카카오 아이디로 사용자 조회, 없으면 새로운 유저 생성
+- 사용자 정보에서 ```user모델```의 ```id```를 이용하여 jwt 토큰 발급
+- ```jwt.encode()```함수에 ```SECRET_KEY```와 ```ALGORITHMS```를 활용하여 JWT 토큰 생성 후 반환 
+- 프론트엔드에 발상할 오류의 종류를 예외처리하여 명확히 명시
+
+> 로그인 데코레이터 구현
+
+```python
+import json
+import jwt
+
+from django.http  import JsonResponse
+
+from my_settings  import SECRET_KEY, ALGORITHMS
+from users.models import User
 
 def login_decorator(func):
     def wrapper(self, request, *args, **kwargs):
+        if 'Authorization' not in request.headers : 
+            return JsonResponse ({'message' : 'UNAUTHORIZED'}, status=401)
+
+        access_token = request.headers.get('Authorization')
+        
         try:
-            access_token = request.headers.get('Authorization', None)
-            token = jwt.decode(access_token, MY_SECRET_KEY, MY_ALGORITHMS)
-            user = User.objects.get(id=token['id'])
+            payload      = jwt.decode(access_token, SECRET_KEY, algorithms=ALGORITHMS)
+            user         = User.objects.get(id=payload['user_id'])
             request.user = user
-            
+
         except jwt.exceptions.DecodeError:
-            return JsonResponse({'MESSAGE': 'DECODE_ERROR'}, status=401)
+            return JsonResponse({'MESSAGE': 'INVALID_TOKEN'}, status=401)
+
         except User.DoesNotExist:
-            return JsonResponse({'MESSAGE': 'USER_NOTEXIST'}, status=401)
-        return func(self, request, *args, **kwargs)
+            return JsonResponse({'MESSAGE': 'INVALID_USER'}, status=401)
+
+        return func(self, request,  *args, **kwargs)
+
     return wrapper
 ```
-
 - python decorator 활용
 - 로그인 성공 시 토큰 발급(jwt)
 - 로그인 실패 시 예외처리
@@ -82,13 +144,10 @@ def login_decorator(func):
 > 상세 페이지
 
 ```python
-path('/<int:product_id>', DetailProductView.as_view())
-```
-
-```python
 class DetailProductView(View) :
     def get(self, request, product_id) :
-        try :    
+        try :
+               
             buy_price_filter  = (Q(productsize__bidding__bidding_position_id = 2) & Q(productsize__bidding__bidding_status_id = 1))
             sell_price_filter = (Q(productsize__bidding__bidding_position_id = 1) & Q(productsize__bidding__bidding_status_id = 1))
 
@@ -103,6 +162,7 @@ class DetailProductView(View) :
             orders   = Order.objects.\
                                     filter(bidding__product_size__product_id = product_id).\
                                     order_by('-created_at')
+
             wishlist = len(Wishlist.objects.filter(id=product_id).all())
             
             product_detail = [{
@@ -117,6 +177,7 @@ class DetailProductView(View) :
                                 'sell_price'      : product.sell_price,
                                 'total_wishlist'  : wishlist,
                             }]
+
             return JsonResponse({'product_detail' : product_detail}, status=200)
 
         except AttributeError as e :
@@ -125,71 +186,16 @@ class DetailProductView(View) :
             return JsonResponse({'message' : f'{e}'}, status=400)
 ```
 
-- 구매, 판매 가격 입찰데이터 join하여 filter로 출력
-- 제품이 없을 경우 'product_id_not_exist' 반환
-- 주문 목록은 주문일시가 빠른 시간부터 정렬
-- 좋아요(관심상품) 클릭 수를 len()함수를 써서 전체 숫자 출력
-- 제품 ID, 제품명, 브랜드명, 제품 발매가격, 모델 번호, 해당 제품 이미지, 현재 가격(입찰 없을 경우 none), 구매가격, 판매가격, 총 관심상품 등록 수  >>> dictionary json 반환
+- 필터 조건 정의: 구매 입찰 정보중 입찰 상태가 유효한 조건(입찰 포지션 2, 상태가 1인 경우)과 판매 입찰 정보 중 입찰 상태가 유효한 조건(입찰 포지션 1, 상태가 1인 경우)
+- 효율적인 데이터 처리와 코드의 간결성을 위하여 annotate()함수 활용
+- 데이터베이스 단계서 집계 함수(Min, Max)를 활용하여 필요한 값을 미리 계산
+- 
 
 > 상품 리스트 출력 API(ProductView)
 
 ````python
-    def get(self, request, menu_name, category_name) :
-        try :
-            offset   = int(request.GET.get('offset', 0)) 
-            limit    = int(request.GET.get('limit', 15))
-            order_id = int(request.GET.get('order_id', 0))
 
-            order_dic = {
-                0 : 'created_at',
-                1 : '-price',
-                2 : 'price',
-                3 : 'name'
-            }
-
-            if limit > 20 :
-                return JsonResponse({'message':'too much lists'}, status=400)
-            
-            goods = [{
-                'id'           : product.id,
-                'name'         : product.name,
-                'price'        : product.price,
-                'img_urls'     : product.thumbnail_image_url,
-                'review_count' : product.posting_set.all().count(),
-                'colors'       : [Color.objects.get(id=color['color_id']).name for color 
-                in DetailedProduct.objects.filter(product_id=product.id).values('color_id')]
-            } for product in Product.objects.filter(menu=Menu.objects.get(name=menu_name), 
-                category=Category.objects.get(menu=Menu.objects.get(name=menu_name), name=category_name)).\
-                order_by(order_dic[order_id])[offset:offset+limit]]
-
-            return JsonResponse({'goods':goods}, status=200)
 ````
-
-- 프론트 HTTP method ```GET``` 요청시 제품 데이터 15개 제한 출력(offset,limit)
-```python
-order_dic = {
-    0: 'created_at', # 최신순
-    1: '-price',    # 내림차순
-    2: 'price',     # 오름차순
-    3: 'name'       # 이름순
-}
-```
-- 제품 데이터를 정렬할 때 보다 편하게 정렬 기준을 정할 수 있도록 딕셔너리를 활용하여 ```정렬 옵션 딕셔너리 order_dic```을 정의
-```python
-goods = [{
-    'id'           : product.id,
-    'name'         : product.name,
-    'price'        : product.price,
-    'img_urls'     : product.thumbnail_image_url,
-    'review_count' : product.posting_set.all().count(),
-    'colors'       : [Color.objects.get(id=color['color_id']).name for color 
-    in DetailedProduct.objects.filter(product_id=product.id).values('color_id')]
-}for product in Product.objects.filter(
-    menu=Menu.objects.get(name=menu_name), 
-    category=Category.objects.get(menu=Menu.objects.get(name=menu_name), name=category_name)
-).order_by(order_dic[order_id])[offset:offset+limit]]
-```
-- 제품 데이터를 출력할 때 제품 이미지, 제품 색상, 제품 리뷰 수를 출력하기 위해 딕셔너리를 활용하여 ```제품 데이터 딕셔너리 goods```을 정의
 
 > 브랜드 리스트 출력 API(BrandView)
 ```python

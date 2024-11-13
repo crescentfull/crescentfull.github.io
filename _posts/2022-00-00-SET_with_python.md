@@ -1,7 +1,7 @@
 ---
 title: "Set with Python"
 description: "Set with Python"
-date: 2022-02-03 11:00:00 +0900
+date: 2022-02-01 11:00:00 +0900
 categories: [CS, Data Structure]
 tags: [Computer Science, Data Structure, Set, Python]
 # image: 

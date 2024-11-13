@@ -1,7 +1,7 @@
 ---
 title: "연결리스트(linked list) VS 배열(array)"
 description: "연결리스트(linked list) VS 배열(array)"
-date: 2022-02-03 10:00:00 +0900
+date: 2022-02-02 10:00:00 +0900
 categories: [CS, Data Structure]
 tags: [Computer Science, Data Structure, Linked List, Array]
 # image: 

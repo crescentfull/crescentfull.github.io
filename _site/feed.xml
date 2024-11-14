@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Yeong Rok n roll</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2024-11-14T14:51:01+09:00</updated>
+  <updated>2024-11-14T15:27:10+09:00</updated>
   <author>
     <name>song yeong rok</name>
     <uri>http://localhost:4000/</uri>
@@ -48,9 +48,9 @@
   <entry>
     <title>힙 heap</title>
     <link href="http://localhost:4000/posts/Heap/" rel="alternate" type="text/html" title="힙 heap" />
-    <published>2022-02-07T10:00:00+09:00</published>
+    <published>2022-02-08T10:00:00+09:00</published>
   
-    <updated>2022-02-07T10:00:00+09:00</updated>
+    <updated>2022-02-08T10:00:00+09:00</updated>
   
     <id>http://localhost:4000/posts/Heap/</id>
     <content src="http://localhost:4000/posts/Heap/" />

@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Yeong Rok n roll</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2024-11-14T14:47:41+09:00</updated>
+  <updated>2024-11-14T14:51:01+09:00</updated>
   <author>
     <name>song yeong rok</name>
     <uri>http://localhost:4000/</uri>
@@ -41,6 +41,32 @@
   
 
   <summary>Jekyll로 블로그 시작하기: 테스트 포스팅</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>힙 heap</title>
+    <link href="http://localhost:4000/posts/Heap/" rel="alternate" type="text/html" title="힙 heap" />
+    <published>2022-02-07T10:00:00+09:00</published>
+  
+    <updated>2022-02-07T10:00:00+09:00</updated>
+  
+    <id>http://localhost:4000/posts/Heap/</id>
+    <content src="http://localhost:4000/posts/Heap/" />
+    <author>
+      <name>song yeong rok</name>
+    </author>
+
+  
+    
+    <category term="CS" />
+    
+    <category term="Data Structure" />
+    
+  
+
+  <summary>heap의 종류와 특성, 주요 연산 및 활용 예시</summary>
 
   </entry>
 
@@ -119,32 +145,6 @@
   
 
   <summary>Tree 트리</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>Hash 테이블</title>
-    <link href="http://localhost:4000/posts/%ED%95%B4%EC%89%AC%ED%85%8C%EC%9D%B4%EB%B8%94/" rel="alternate" type="text/html" title="Hash 테이블" />
-    <published>2022-02-03T10:00:00+09:00</published>
-  
-    <updated>2022-02-03T10:00:00+09:00</updated>
-  
-    <id>http://localhost:4000/posts/%ED%95%B4%EC%89%AC%ED%85%8C%EC%9D%B4%EB%B8%94/</id>
-    <content src="http://localhost:4000/posts/%ED%95%B4%EC%89%AC%ED%85%8C%EC%9D%B4%EB%B8%94/" />
-    <author>
-      <name>song yeong rok</name>
-    </author>
-
-  
-    
-    <category term="CS" />
-    
-    <category term="Data Structure" />
-    
-  
-
-  <summary>해쉬테이블의 이해</summary>
 
   </entry>
 

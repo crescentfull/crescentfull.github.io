@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Yeong Rok n roll</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2024-11-18T20:03:53+09:00</updated>
+  <updated>2024-11-18T20:30:03+09:00</updated>
   <author>
     <name>song yeong rok</name>
     <uri>http://localhost:4000/</uri>
@@ -41,6 +41,32 @@
   
 
   <summary>Jekyll로 블로그 시작하기: 테스트 포스팅</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>동기와 비동기</title>
+    <link href="http://localhost:4000/posts/%EB%8F%99%EA%B8%B0%EC%99%80_%EB%B9%84%EB%8F%99%EA%B8%B0/" rel="alternate" type="text/html" title="동기와 비동기" />
+    <published>2022-03-02T10:00:00+09:00</published>
+  
+    <updated>2022-03-02T10:00:00+09:00</updated>
+  
+    <id>http://localhost:4000/posts/%EB%8F%99%EA%B8%B0%EC%99%80_%EB%B9%84%EB%8F%99%EA%B8%B0/</id>
+    <content src="http://localhost:4000/posts/%EB%8F%99%EA%B8%B0%EC%99%80_%EB%B9%84%EB%8F%99%EA%B8%B0/" />
+    <author>
+      <name>song yeong rok</name>
+    </author>
+
+  
+    
+    <category term="CS" />
+    
+    <category term="Common" />
+    
+  
+
+  <summary>Synchronous &amp;amp; Asynchronous</summary>
 
   </entry>
 
@@ -119,32 +145,6 @@
   
 
   <summary>Tree 트리의 종류</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>Tree 트리</title>
-    <link href="http://localhost:4000/posts/Tree/" rel="alternate" type="text/html" title="Tree 트리" />
-    <published>2022-02-05T10:00:00+09:00</published>
-  
-    <updated>2022-02-05T10:00:00+09:00</updated>
-  
-    <id>http://localhost:4000/posts/Tree/</id>
-    <content src="http://localhost:4000/posts/Tree/" />
-    <author>
-      <name>song yeong rok</name>
-    </author>
-
-  
-    
-    <category term="CS" />
-    
-    <category term="Data Structure" />
-    
-  
-
-  <summary>Tree 트리</summary>
 
   </entry>
 

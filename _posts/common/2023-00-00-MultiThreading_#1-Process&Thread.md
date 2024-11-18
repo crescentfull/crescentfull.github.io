@@ -1,7 +1,7 @@
 ---
 title: "멀티스레딩(Multithreading) #1 - 프로세스와 스레드"
 description: "멀티스레딩의 개요, 프로세스와 스레드의 차이점, 프로세스의 개요, 프로세스의 구성, 프로세스 제어 블록, 프로세스 상태"
-date: 2023-00-00 10:00:00 +0900
+date: 2023-01-01 10:00:00 +0900
 categories: [CS, Common]
 tags: [Computer Science, Multithreading, Process, Thread]
 image:

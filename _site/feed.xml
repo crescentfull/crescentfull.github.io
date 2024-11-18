@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Yeong Rok n roll</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2024-11-18T21:54:17+09:00</updated>
+  <updated>2024-11-18T21:55:55+09:00</updated>
   <author>
     <name>song yeong rok</name>
     <uri>http://localhost:4000/</uri>
@@ -41,6 +41,32 @@
   
 
   <summary>Jekyll로 블로그 시작하기: 테스트 포스팅</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>멀티스레딩(Multithreading) #1 - 프로세스와 스레드</title>
+    <link href="http://localhost:4000/posts/MultiThreading_-1-Process&amp;Thread/" rel="alternate" type="text/html" title="멀티스레딩(Multithreading) #1 - 프로세스와 스레드" />
+    <published>2023-01-01T10:00:00+09:00</published>
+  
+    <updated>2023-01-01T10:00:00+09:00</updated>
+  
+    <id>http://localhost:4000/posts/MultiThreading_-1-Process&amp;Thread/</id>
+    <content src="http://localhost:4000/posts/MultiThreading_-1-Process&amp;Thread/" />
+    <author>
+      <name>song yeong rok</name>
+    </author>
+
+  
+    
+    <category term="CS" />
+    
+    <category term="Common" />
+    
+  
+
+  <summary>멀티스레딩의 개요, 프로세스와 스레드의 차이점, 프로세스의 개요, 프로세스의 구성, 프로세스 제어 블록, 프로세스 상태</summary>
 
   </entry>
 
@@ -119,32 +145,6 @@
   
 
   <summary>heap의 종류와 특성, 주요 연산 및 활용 예시</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>Graph 그래프</title>
-    <link href="http://localhost:4000/posts/Graph/" rel="alternate" type="text/html" title="Graph 그래프" />
-    <published>2022-02-06T10:00:00+09:00</published>
-  
-    <updated>2022-02-06T10:00:00+09:00</updated>
-  
-    <id>http://localhost:4000/posts/Graph/</id>
-    <content src="http://localhost:4000/posts/Graph/" />
-    <author>
-      <name>song yeong rok</name>
-    </author>
-
-  
-    
-    <category term="CS" />
-    
-    <category term="Data Structure" />
-    
-  
-
-  <summary>그래프의 구성요소, 종류, 표현 방법 그리고 탐색 알고리즘</summary>
 
   </entry>
 

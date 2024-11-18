@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Yeong Rok n roll</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2024-11-18T21:55:55+09:00</updated>
+  <updated>2024-11-18T21:56:53+09:00</updated>
   <author>
     <name>song yeong rok</name>
     <uri>http://localhost:4000/</uri>
@@ -50,7 +50,7 @@
     <link href="http://localhost:4000/posts/MultiThreading_-1-Process&amp;Thread/" rel="alternate" type="text/html" title="멀티스레딩(Multithreading) #1 - 프로세스와 스레드" />
     <published>2023-01-01T10:00:00+09:00</published>
   
-    <updated>2023-01-01T10:00:00+09:00</updated>
+    <updated>2024-11-18T21:56:02+09:00</updated>
   
     <id>http://localhost:4000/posts/MultiThreading_-1-Process&amp;Thread/</id>
     <content src="http://localhost:4000/posts/MultiThreading_-1-Process&amp;Thread/" />

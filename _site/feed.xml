@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Yeong Rok n roll</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2024-11-18T20:30:03+09:00</updated>
+  <updated>2024-11-18T20:56:21+09:00</updated>
   <author>
     <name>song yeong rok</name>
     <uri>http://localhost:4000/</uri>
@@ -41,6 +41,32 @@
   
 
   <summary>Jekyll로 블로그 시작하기: 테스트 포스팅</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>캐시(Cache)와 캐싱(Caching)</title>
+    <link href="http://localhost:4000/posts/%EC%BA%90%EC%8B%9C_%EA%B7%B8%EB%A6%AC%EA%B3%A0_%EC%BA%90%EC%8B%B1/" rel="alternate" type="text/html" title="캐시(Cache)와 캐싱(Caching)" />
+    <published>2022-03-02T10:00:00+09:00</published>
+  
+    <updated>2022-03-02T10:00:00+09:00</updated>
+  
+    <id>http://localhost:4000/posts/%EC%BA%90%EC%8B%9C_%EA%B7%B8%EB%A6%AC%EA%B3%A0_%EC%BA%90%EC%8B%B1/</id>
+    <content src="http://localhost:4000/posts/%EC%BA%90%EC%8B%9C_%EA%B7%B8%EB%A6%AC%EA%B3%A0_%EC%BA%90%EC%8B%B1/" />
+    <author>
+      <name>song yeong rok</name>
+    </author>
+
+  
+    
+    <category term="CS" />
+    
+    <category term="Common" />
+    
+  
+
+  <summary>캐시(Cache)와 캐싱(Caching)이란?, 캐시의 장단점, 캐싱의 전략, 현업 활용 사례, Python 예제</summary>
 
   </entry>
 
@@ -119,32 +145,6 @@
   
 
   <summary>그래프의 구성요소, 종류, 표현 방법 그리고 탐색 알고리즘</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>Tree 트리(2)</title>
-    <link href="http://localhost:4000/posts/Tree(2)/" rel="alternate" type="text/html" title="Tree 트리(2)" />
-    <published>2022-02-05T12:00:00+09:00</published>
-  
-    <updated>2022-02-05T12:00:00+09:00</updated>
-  
-    <id>http://localhost:4000/posts/Tree(2)/</id>
-    <content src="http://localhost:4000/posts/Tree(2)/" />
-    <author>
-      <name>song yeong rok</name>
-    </author>
-
-  
-    
-    <category term="CS" />
-    
-    <category term="Data Structure" />
-    
-  
-
-  <summary>Tree 트리의 종류</summary>
 
   </entry>
 

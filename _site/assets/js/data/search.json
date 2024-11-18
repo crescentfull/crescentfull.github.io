@@ -205,6 +205,23 @@
   },
   
   {
+    "title": "URL",
+    "url": "/posts/URL/",
+    "categories": "CS, Network",
+    "tags": "Computer Science, Network",
+    "date": "2022-01-11 10:00:00 +0900",
+    
+
+
+
+
+
+    
+    "snippet": "URL 이란  Uniform Resource Locator  인터넷 상의 자원 위치 표기를 위한 규약  WWW 주요 요소 중 하나 =&gt; HTML(데이터 표기 하는 부분), URL(자원들을 어떻게 지칭할 것인가? URL로), HTTP(통신 방식)URL vs URI  URI(Uniform Resource Identifier) : 통합 자원 ‘식별자’...",
+    "content": "URL 이란  Uniform Resource Locator  인터넷 상의 자원 위치 표기를 위한 규약  WWW 주요 요소 중 하나 =&gt; HTML(데이터 표기 하는 부분), URL(자원들을 어떻게 지칭할 것인가? URL로), HTTP(통신 방식)URL vs URI  URI(Uniform Resource Identifier) : 통합 자원 ‘식별자’  URI의 하위 개념이 URL          https://velog.io/ 주소                  https://velog.io/ 라는 서버를 나타내는 URL이면서 URI                    https://velog.io/input?id=1234&amp;pw=1234 주소                  “https://velog.io/input”은 URL          “https://velog.io/input?id=1234&amp;pw=1234”는 URI=&gt; 내가 원하는 정보를 얻기 위해서 “?id=1234&amp;pw=1234”라는 식별자가 필요                    URI 구조사진출처 : 코디엔에스사진출처 : 위키피디아"
+  },
+  
+  {
     "title": "Kream 사이트 클론 프로젝트",
     "url": "/posts/kream_clone_project/",
     "categories": "Project",

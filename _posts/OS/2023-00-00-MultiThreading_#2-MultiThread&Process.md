@@ -2,8 +2,8 @@
 title: "멀티스레딩(Multithreading) #2 - 멀티 스레드와 멀티 프로세스"
 description: "멀티스레딩의 개요, 멀티 스레드와 멀티 프로세스의 차이점, 멀티 스레드와 멀티 프로세스의 장단점"
 date: 2023-01-02 10:00:00 +0900
-categories: [CS, Common]
-tags: [Computer Science, Multithreading, Multiprocessing, Thread, Process]
+categories: [CS, OS(Operating System)]
+tags: [Computer Science, Operating System, Multithreading, Multiprocessing, Thread, Process]
 image:
 ---
 

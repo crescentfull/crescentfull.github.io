@@ -4,7 +4,7 @@ description: "멀티스레딩의 개요, 멀티 스레드와 멀티 프로세스
 date: 2023-01-02 10:00:00 +0900
 categories: [CS, OS(Operating System)]
 tags: [Computer Science, Operating System, Multithreading, Multiprocessing, Thread, Process]
-image:
+# image:
 ---
 
 # (1) 멀티 스레드

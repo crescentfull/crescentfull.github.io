@@ -4,7 +4,7 @@ description: "멀티스레딩의 개요, 프로세스와 스레드의 차이점,
 date: 2023-01-01 10:00:00 +0900
 categories: [CS, OS(Operating System)]
 tags: [Computer Science, Operating System, Multithreading, Process, Thread]
-image:
+# image:
 ---
 
 # 멀티스레딩(Multithreading)

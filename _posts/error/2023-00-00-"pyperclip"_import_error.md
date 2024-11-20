@@ -2,7 +2,7 @@
 title: "pyperclip import 에러"
 description: "pyperclip import 에러 해결 방법"
 date: 2023-02-07 10:00:00 +0900
-categories: [CS, Error]
+categories: [Error]
 tags: [Error, pyperclip]
 ---
 

@@ -1,3 +1,11 @@
+---
+title: "Django Channel Layer"
+description: "Django Channel Layer란 뭐냐"
+date: 2024-10-04 10:00:00 +0900
+categories: [Django]
+tags: [Django, ChannelLayer]
+---
+
 
 # Channel Layer
 - Django Channels의 핵심 개념 중 하나이다.

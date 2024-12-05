@@ -50,10 +50,10 @@ async_to_sync(channel_layer.group_send)(
         "message": "Hello, world!",  # 전송할 데이터
     },
 )
-
 ```
 
 3. 메세지 수신: 메세지 처리를 위해서 Consumer.py 에서 핸들러 구성
+
 ```python
 # consumers.py
 from channels.generic.websocket import AsyncWebsocketConsumer

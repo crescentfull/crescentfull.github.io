@@ -1,17 +1,19 @@
 ---
-title: "WebSocket"
-description: "WebSockek 제대로 알아보기"
+title: "WebSocket 그리고 HTTP"
+description: "WebSockek과 HTTP로 알아보는 웹 통신"
 date: 2024-12-24 10:00:00 +0900
 categories: [CS, Network]
-tags: [Computer Science, Network, WebSocket]
+tags: [Computer Science, Network, WebSocket, HTTP]
 ---
 
-## WebSocket이란?
+## WebSocket과 HTTP
 
-### 1. WebSocket의 개념
-**WebSocket**은 웹 브라우저와 서버 간의 **양방향 통신**을 가능하게 하는 프로토콜이다.  
-기존의 HTTP 프로토콜은 요청-응답 방식으로 동작하지만, WebSocket은 **단일 TCP 연결을 통해 양방향 통신**을 지원한다.
+### WebSocket
+**WebSocket**은 웹 브라우저와 서버 간의 [양방향 통신](https://en.wikipedia.org/wiki/Duplex_(telecommunications))을 가능하게 하는 프로토콜이다.  
+-   기존의 HTTP 프로토콜은 요청-응답 방식으로 동작하지만, WebSocket은 **단일 TCP 연결을 통해 양방향 통신**을 지원한다.
 그렇기 때문에 비교적 최신 버전의 인앱 채팅, 알림, 음성 또는 화상통화와 같은 실시간 애플리케이션에 적합하다.
+
+HTTP와 동일하게 **애플리케이션 계층**에서 동작한다. 그리고 [평문](https://developer.mozilla.org/ko/docs/Glossary/Plaintext)메세지 전송 방식이므로, [SSL/TLS](https://aws.amazon.com/ko/compare/the-difference-between-ssl-and-tls/) 보안 계층으로 암호화 되어야 데이터 탈취를 방지할 수 있다.
 
 #### **WebSocket의 특징**
 - **양방향 통신**: 클라이언트와 서버가 서로 데이터를 주고받을 수 있다.
@@ -19,7 +21,17 @@ tags: [Computer Science, Network, WebSocket]
 - **단일 연결**: 초기 핸드셰이크 이후 단일 TCP 연결을 통해 통신이 이루어진다.
 - **경량 프로토콜**: HTTP보다 오버헤드가 적고, 효율적인 데이터 전송이 가능하다.
 
-### 2. WebSocket의 동작 원리
+### HTTP(HyperText Transfer Protocol)
+- 문자 그대로 하이퍼텍스트 전송 프로토콜인 HTTP는 하이퍼텍스트 링크를 사용하여 웹페이지를 로드하는데 사용된다.
+- 클라이언트와 서버 간의 비연속적(stateless) 요청-응답 방식의 통신 프로토콜이다.
+- 클라이언트가 서버에 요청(request) -> 서버가 응답(response) 반환
+- 단방향 통신이므로 서버가 클라이언트에 데이터를 보낼 수 없다.
+그렇기에 주로 웹페이지 로드, API 호출 등에 사용된다.
+
+### WebSocket의 동작 원리
+WebSoket 프로토콜은 클아이언트와 서버가 [전이중](https://en.wikipedia.org/wiki/Duplex_(telecommunications)) 채널에서 통신하는 방법을 설명한다.
+즉, 클라이언트와 서버 모두 오랫동안 지속되는 연결을 통해 동시에 데이터를 주고 받을 수 있는 것이다.
+
 WebSocket은 **HTTP 핸드셰이크**를 통해 연결을 설정한 후, **단일 TCP 연결**을 통해 통신을 유지한다.
 
 #### **핸드셰이크 과정**

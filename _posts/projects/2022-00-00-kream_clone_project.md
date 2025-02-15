@@ -2,7 +2,7 @@
 title: "Kream 사이트 클론 프로젝트"
 description: "Kream 사이트 클론 프로젝트 소개"
 date: 2022-01-06 10:00:00 +0900
-categories: [Project, Project]
+categories: [Projects, Project]
 tags: [Django, project, python, mysql, git, backend, frontend]
 image: https://user-images.githubusercontent.com/78721108/139569482-db28b424-c233-4df5-9520-4da68e528439.gif
 ---

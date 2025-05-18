@@ -1,5 +1,5 @@
 ---
-title: "macOS에서 Nginx·Gunicorn으로 Django 배포하기 #1"
+title: "macOS에서 Nginx·Gunicorn (feat. django)"
 description: "Nginx·Gunicorn 개념 설명"
 date: 2025-05-01 10:00:00 +0900
 categories: [Django, Deployment]

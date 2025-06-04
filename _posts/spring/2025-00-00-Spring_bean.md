@@ -1,9 +1,9 @@
 ---
-title: "Instance Method, Static Method, Class Method"
-description: "파이썬 메서드 정리"
-date: 2021-08-06 10:00:00 +0900
-categories: [Language, Python]
-tags: [Language, Python, Method]
+title: "Spring Bean"
+description: "Spring에서 객체를 Bean으로 관리하는 이유"
+date: 2025-05-31 10:00:00 +0900
+categories: [Language, Spring]
+tags: [Language, java, spring, bean]
 image: https://luckydavekim.github.io/static/01d44fb486822261054e340f45003a56/8ff83/cover.webp
 ---
 

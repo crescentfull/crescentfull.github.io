@@ -1,7 +1,7 @@
 ---
 title: "RDBMS vs NoSQL"
 description: "RDBMS와 NoSQL의 특징, 장단점, 언제 사용되는지"
-date: 2022-8-20 10:00:00 +0900
+date: 2022-08-20 10:00:00 +0900
 categories: [CS, Database]
 tags: [Computer Science, Database, RDBMS, NoSQL]
 ---

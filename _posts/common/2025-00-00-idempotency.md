@@ -1,13 +1,13 @@
 ---
 title: "멱등성(Idempotency)"
 description: "멱등성(Idempotency)의 이해와 API 설계에서의 중요성"
-date: 2025-10-25 10:00:00 +0900
+date: 2025-10-24 10:00:00 +0900
 categories: [CS, Common]
 tags: [Computer Science, Common, Idempotency, API]
 ---
 
 
-## 멱등성(Idempotency)과 API 설계의 원칙
+# 멱등성(Idempotency)과 API 설계의 원칙
 
 ---
 

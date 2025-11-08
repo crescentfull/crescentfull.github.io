@@ -1,7 +1,7 @@
 ---
 title: "Django 생태계 이해"
 description: "django는 어떤 아키텍쳐 기반으로 만들어진 프레임워크일까"
-date: 2025-10-27 10:00:00 +0900
+date: 2025-11-07 10:00:00 +0900
 categories: [CS, Common]
 tags: [Django, DDD, Architecture]
 ---
@@ -11,236 +11,133 @@ Django는 **Python 기반의 웹 프레임워크**로, “웹 개발을 빠르�
 
 ---
 
-### 1. 기원과 철학
+# Django 아키텍처 이해
 
-Django는 2003년경 미국의 지역 신문사 웹 개발팀에서 만들어졌다. 신문사는 매일 새로운 기사와 페이지를 빠르게 만들어야 했고, 일일이 HTML을 손으로 짜는 것은 너무 비효율적이었다. 그래서 개발자들이 “한 번 만든 코드는 재사용하자”라는 생각으로 **‘DRY(Don’t Repeat Yourself)’ 원칙**을 핵심 철학으로 삼았다.
-즉, 같은 일을 반복하지 말고, 구조적으로 재활용 가능한 코드를 지향하는 철학에서 출발했다.
-
----
-
-### 2. MVC (혹은 MTV) 아키텍처
-
-Django는 **MVC(Model-View-Controller)** 패턴을 기반으로 하지만, 내부 용어는 약간 다르다.
-Django에서는 이를 **MTV(Model-Template-View)** 라고 부른다.
-
-* **Model**: 데이터 구조와 DB 테이블을 정의한다. (`models.py`)
-* **Template**: 화면에 보여줄 HTML을 담당한다. (`templates/`)
-* **View**: 로직을 담당하며, Model과 Template을 연결한다. (`views.py`)
-
-즉, 요청이 들어오면 View가 Model을 통해 데이터를 가져오고, Template에 담아 응답을 반환하는 식이다.
+### — MTV, Active Record, Domain Architecture, Clean Architecture
 
 ---
 
-### 3. ‘배터리 포함(Batteries Included)’ 철학
+## 1. Django의 기원과 목적
 
-Django는 “배터리가 포함되어 있다(Batteries included)”는 슬로건으로 유명하다.
-이는 “필요한 기능을 대부분 내장하고 있다”는 뜻이다. 예를 들어 다음과 같은 기능들이 모두 기본 제공된다:
-
-* ORM (Object Relational Mapper): SQL을 직접 작성하지 않아도 DB를 조작할 수 있음
-* Admin 자동 생성: 모델만 정의하면 관리자 페이지가 자동으로 만들어짐
-* 인증(Authentication)과 권한(Permission) 시스템
-* Form 처리, CSRF 보호, 세션 관리, 캐시, 국제화(i18n) 등
-
-이 덕분에 스타트업이나 개인 개발자가 **“아이디어 → 프로토타입 → 배포”**까지 매우 빠르게 진행할 수 있다.
+Django는 Python 기반의 웹 프레임워크로,
+“반복되는 웹 개발을 자동화하고 빠르게 개발할 수 있도록 돕는 도구”다.
+2003년 미국의 지역 신문사 웹 개발팀에서 만들어졌으며,
+**DRY(Don’t Repeat Yourself)** 원칙을 핵심 철학으로 삼았다.
+즉, 같은 코드를 반복하지 않고 재사용 가능한 구조를 지향한다.
 
 ---
 
-### 4. Django의 강점
+## 2. MTV 구조 (Model–Template–View)
 
-1. **보안** – CSRF, XSS, SQL Injection 등 웹 보안 기본 방어 장치가 내장되어 있다.
-2. **생산성** – ORM과 자동화 도구 덕분에 빠른 개발이 가능하다.
-3. **확장성** – 대규모 서비스(Instagram, Disqus 등)에서도 충분히 확장 가능하다.
-4. **유지보수성** – 엄격한 프로젝트 구조 덕분에 협업이 용이하다.
+Django는 MVC(Model–View–Controller) 패턴을 기반으로 하지만, 용어가 약간 다르다.
+Django에서는 이를 **MTV(Model–Template–View)** 구조로 부른다.
 
----
+* **Model**: 데이터 구조 정의 및 ORM 매핑
+* **Template**: 사용자에게 보여줄 화면(HTML)을 정의
+* **View**: 요청을 처리하고 Model과 Template을 연결
 
-### 5. Django의 철학적 매력
-
-Django는 단순히 “웹을 만드는 도구”가 아니라, **개발자에게 일관성과 품질을 강제하는 철학적 프레임워크**에 가깝다.
-코드를 읽으면 의도가 명확해야 하고, 패턴을 따르지 않으면 오히려 불편하게 설계되어 있다.
-이 덕분에 장기적으로 유지보수하기 좋은 “깨끗한 코드”를 지향하게 된다.
-
-좋은 포인트다. “Django가 도메인 아키텍처 기반으로 만들어졌다”는 말은 단순히 “MVC 패턴을 쓴다”는 뜻보다 훨씬 깊은 구조적 이야기를 담고 있다.
+요청이 들어오면 View가 Model에서 데이터를 가져오고, Template에 담아 응답을 반환한다.
+이 구조는 웹 요청–응답 흐름을 단순하고 일관성 있게 유지하도록 돕는다.
 
 ---
 
-### 1. **도메인 아키텍처란 무엇인가**
+## 3. Django ORM과 Active Record 패턴
 
-‘도메인 아키텍처(Domain Architecture)’라는 말에서 *도메인(domain)*은 단순히 “URL 주소”가 아니라, **비즈니스 로직이 다루는 ‘문제 영역(Problem Space)’**을 의미한다.
-예를 들어,
+Django ORM(Object Relational Mapper)은 **Active Record 패턴**을 따른다.
+Active Record는 **객체가 데이터베이스 테이블과 직접 연결되어 자신의 데이터를 스스로 저장·조회하는 방식**이다.
 
-* 전자상거래 서비스의 도메인은 “상품, 주문, 결제, 배송”
-* 대학 시스템의 도메인은 “학생, 과목, 성적, 졸업요건”
-  이다.
+```python
+class Article(models.Model):
+    title = models.CharField(max_length=100)
+    author = models.CharField(max_length=50)
 
-즉, 도메인 아키텍처란 **코드 구조를 기술 중심(Controller, API 등)이 아니라, 도메인 개념 중심으로 나누는 설계 방식**이다.
-이건 바로 *DDD(Domain-Driven Design, 도메인 주도 설계)*의 기본 정신과 연결된다.
+# 생성
+article = Article(title="Django", author="Yeongrok")
+article.save()
+
+# 조회
+found = Article.objects.get(id=1)
+print(found.title)
+```
+
+이 구조에서 `Article` 클래스는 단순한 데이터 구조가 아니라,
+데이터의 CRUD(Create, Read, Update, Delete)를 직접 수행하는 **도메인 객체**다.
+
+즉, ORM이 SQL을 대신 처리하며 모델 클래스가 DB 작업을 모두 담당한다.
+이는 **Django 모델이 엔티티(Entity)와 리포지토리(Repository)의 역할을 동시에 수행**한다는 뜻이다.
+
+### Active Record의 장점
+
+* 단순하고 직관적인 CRUD 코드 작성 가능
+* 빠른 프로토타이핑과 MVP 개발에 적합
+* ORM이 SQL을 추상화하므로 개발자가 비즈니스 로직에 집중 가능
+
+### 한계
+
+* 복잡한 비즈니스 로직이 모델에 집중되어 **Fat Model** 문제가 생길 수 있음
+* 테스트나 유지보수 시, 데이터 접근 로직과 도메인 로직이 분리되지 않아 어려움이 발생
+
+이 때문에 Django를 사용할 때는
+Service Layer를 별도로 두거나, 로직을 분리하여 유지보수성을 높이는 접근이 권장된다.
 
 ---
 
-### 2. **Django의 구조가 도메인 아키텍처적인 이유**
+## 4. Django의 도메인 중심 구조
 
-Django는 프로젝트를 시작할 때 다음과 같은 디렉토리 구조를 권장한다:
+Django 프로젝트 구조를 보면, 도메인 단위로 앱이 나뉘는 것을 알 수 있다.
 
 ```
 project/
- ├── manage.py
  ├── config/
  ├── apps/
  │    ├── users/
  │    ├── orders/
- │    ├── payments/
- │    └── products/
+ │    ├── products/
+ │    └── payments/
 ```
 
-여기서 핵심은 `apps/` 아래의 각 폴더가 하나의 **도메인 단위**라는 것이다.
-즉, “유저”, “상품”, “주문” 같은 실제 비즈니스 개념을 기준으로 코드를 분리한다.
-각 app은 **모델(Model), 뷰(View), URL, 템플릿, 테스트**를 모두 자기 영역 안에 가지고 있어서 독립적인 작은 시스템처럼 움직인다.
+각 `app`은 특정 비즈니스 영역(도메인)을 표현하며,
+모델, 뷰, URL, 테스트, 템플릿을 모두 포함한 **독립된 기능 단위**다.
 
-이건 흔히 말하는 **“Django는 하나의 거대한 프레임워크가 아니라, 여러 개의 독립적인 도메인 앱을 묶는 컨테이너”**라는 말로 표현된다.
+이 구조 덕분에 Django는 기술적 계층보다 **업무 도메인 중심의 모듈화**가 자연스럽게 이루어진다.
+즉, 하나의 `app`은 독립적인 하위 시스템으로 작동할 수 있다.
 
----
+**장점**
 
-### 3. **도메인 중심 구조의 장점**
-
-이런 구조는 다음과 같은 장점을 갖는다.
-
-1. **응집도(cohesion)가 높다** — 같은 비즈니스 맥락의 코드가 한곳에 모여 있다.
-2. **결합도(coupling)가 낮다** — 다른 도메인과의 의존성이 줄어 유지보수가 쉽다.
-3. **테스트와 배포가 단위별로 가능하다** — 특정 app만 분리하여 테스트, API 문서화, 혹은 서브시스템화가 가능하다.
-4. **확장에 유리하다** — 나중에 “상품 시스템”을 마이크로서비스로 분리할 때 구조가 그대로 재사용된다.
+* 도메인별 응집도(cohesion)가 높음
+* 앱 간 결합도(coupling)가 낮아 유지보수에 유리함
+* 특정 앱 단위로 테스트, 배포, 확장 가능
 
 ---
 
-### 4. **MVC보다 ‘도메인 중심’으로 본 Django**
+## 5. Layered Architecture와 비교
 
-많은 프레임워크들이 Controller, Service, Repository 같은 기술적 분류로 코드를 나눈다.
-이건 단기 개발에는 빠르지만, 시간이 지나면 “모든 기능이 services.py 안에 뒤섞인 괴물”이 되기 쉽다.
-
-Django는 반대로 **“app = 도메인”**이라는 철학을 고수한다.
-그래서 개발자는 “이 코드가 기술적으로 어디 속하나?”가 아니라
-“이 로직이 **무슨 일을 하는 도메인**에 속하나?”를 먼저 생각하게 된다.
-
----
-
-### 5. **정리하자면**
-
-> Django가 도메인 아키텍처 기반이라는 말은,
-> **비즈니스의 ‘개념적 경계’에 따라 시스템을 나누는 구조를 지원하고 강제하는 프레임워크**라는 뜻이다.
-
-즉, Django의 “앱(app)”은 단순한 기능 모듈이 아니라,
-**하나의 완결된 도메인 모델을 품은 작은 세계**인 셈이다.
-
----
-
-이 관점에서 Django를 보면, “models.py”는 단순한 DB 스키마 정의가 아니라 **도메인의 핵심 규칙(엔티티, 속성, 불변성)**을 표현하는 문서로 읽히게 된다.
-
-아주 좋은 질문이다 — 바로 이 부분이 백엔드 아키텍처의 ‘철학적 갈림길’이다.
-**도메인 아키텍처(Domain Architecture)**와 **레이어드 아키텍처(Layered Architecture)**는
-서로 경쟁하는 개념이라기보다, **관심사를 어디에 두느냐의 차이**에서 갈라진다.
-
----
-
-## 1. 레이어드 아키텍처(Layered Architecture)
-
-레이어드 아키텍처는 말 그대로 **“수평적으로 기능을 구분한 구조”**다.
-코드의 책임을 **기술적 역할**에 따라 나눈다.
-
-보통 이렇게 생겼다:
+레이어드 아키텍처(Layered Architecture)는 기능을 기술적 역할에 따라 구분한다.
 
 ```
-Presentation Layer (Controller, API)
-    ↓
-Application Layer (Service)
-    ↓
-Domain Layer (Entity, Business Logic)
-    ↓
-Infrastructure Layer (DB, External APIs)
+Controller → Service → Domain → Repository
 ```
 
-각 레이어는 자신의 하위 레이어에만 의존하고,
-상위 레이어에 의존하지 않는다.
-즉, **의존 방향이 아래로만 흐른다.**
+각 레이어는 하위 레이어에만 의존하며,
+**관심사의 분리(Separation of Concerns)**를 목표로 한다.
+Flask, FastAPI, Spring 등의 프레임워크는 이 방식을 주로 따른다.
 
-예시로, Flask나 FastAPI에서 흔히 이런 식으로 구현한다:
+반면 Django는 이를 도메인 단위(`app`)로 묶는 구조를 갖는다.
+즉, Django에서는 **각 도메인 내부에서 레이어드 구조가 암묵적으로 존재**하며,
+도메인 자체가 프로젝트의 상위 구분 기준이 된다.
 
-```
-/app
- ├── api/
- │    └── user_controller.py
- ├── service/
- │    └── user_service.py
- ├── domain/
- │    └── user_entity.py
- └── repository/
-      └── user_repository.py
-```
-
-이 구조의 핵심 목적은 **관심사의 분리(Separation of Concerns)** 이다.
-즉, “비즈니스 로직은 비즈니스 로직만”, “API는 입출력만” 담당하게 하는 것이다.
+| 구분    | Layered Architecture             | Django Domain Structure          |
+| ----- | -------------------------------- | -------------------------------- |
+| 분리 기준 | 기술적 역할(API, Service, Repository) | 비즈니스 개념(Users, Orders, Products) |
+| 의존 방향 | 수직적 (위 → 아래)                     | 수평적 (도메인 단위 내 응집)                |
+| 중심 사고 | 기능 중심                            | 도메인 중심                           |
 
 ---
 
-## 2. 도메인 아키텍처(Domain-Centric Architecture)
+## 6. Clean Architecture와의 연결
 
-반면 도메인 아키텍처, 혹은 **도메인 주도 설계(DDD) 기반 아키텍처**는
-기술적 역할보다 **비즈니스 개념** 중심으로 코드를 나눈다.
-
-예를 들어 같은 기능을 도메인 아키텍처로 짠다면:
-
-```
-/app
- ├── users/
- │    ├── domain/
- │    │     ├── user.py
- │    │     └── user_service.py
- │    ├── infra/
- │    │     └── user_repository.py
- │    └── interface/
- │          └── user_controller.py
- ├── orders/
- │    └── ...
-```
-
-여기서 `users`는 **비즈니스 도메인(“사용자 관리”)**이고,
-그 안에서 레이어드처럼 세분화되지만, “한 도메인 안에서”만 작동한다.
-즉, **‘기능(기술)’보다 ‘맥락(도메인)’이 상위 개념**으로 올라온다.
-
----
-
-## 3. 차이의 본질 — “축이 다르다”
-
-| 비교 항목    | 레이어드 아키텍처                              | 도메인 아키텍처                                      |
-| -------- | -------------------------------------- | --------------------------------------------- |
-| 분리 기준    | 기술적 역할 (API, Service, Repository)      | 비즈니스 개념 (User, Order, Payment 등)              |
-| 의존 방향    | 수직 (Controller → Service → Repository) | 수평적이면서 내부 응집 (도메인 내부에서만 호출)                   |
-| 구조 목적    | 관심사 분리와 유지보수                           | 도메인 모델의 응집과 독립성                               |
-| 예시 프레임워크 | FastAPI, Flask, Spring                 | Django, NestJS (DDD Mode), Clean Architecture |
-| 중심 사고    | “이 기능이 어디서 실행되나?”                      | “이 로직이 어떤 문제 영역에 속하나?”                        |
-
-결국, **Layered는 기술 중심**, **Domain은 비즈니스 중심**이다.
-하지만 둘은 대립이 아니라 — *도메인 아키텍처는 레이어드 아키텍처 위에 세워지는 진화된 형태*라고 볼 수 있다.
-
----
-
-## 4. 그래서 “FastAPI로 레이어드 아키텍처를 해봐라”는 말의 의미
-
-이는 “FastAPI나 Flask처럼 자유도가 높은 프레임워크를 이용해서,
-아키텍처의 기본 원칙(레이어 분리, 의존 방향, 모듈화)을 직접 설계해보라”는 뜻이다.
-
-Django는 이미 도메인 단위로 구조를 묶어주는 프레임워크지만,
-FastAPI나 Flask는 **‘프레임워크가 당신 대신 구조를 정해주지 않는다.’**
-
-즉, **스스로 설계 원칙을 세워야 한다는 훈련의 의미**다.
-직접 API, Service, Repository 레이어를 나누어보면
-“도메인 중심 아키텍처가 왜 등장했는지”가 실감난다.
-
----
-
-## 5. 두 철학의 통합 — Clean Architecture
-
-현대 백엔드의 이상형은 “둘의 융합형”이다.
-즉, 레이어드의 기술 분리 위에 도메인 중심의 응집을 얹는 구조:
+현대적인 백엔드 구조는 레이어드와 도메인 구조를 통합한 형태로 발전하고 있다.
+대표적인 형태가 **Clean Architecture** 또는 **Hexagonal Architecture**이다.
 
 ```
 /src
@@ -248,14 +145,35 @@ FastAPI나 Flask는 **‘프레임워크가 당신 대신 구조를 정해주지
  │    ├── domain/ (Entity, Logic)
  │    ├── application/ (UseCase, Service)
  │    ├── infrastructure/ (DB, Cache)
- │    └── interface/ (FastAPI Router)
+ │    └── interface/ (API, Router)
  ├── products/
  │    └── ...
 ```
 
-이게 바로 **클린 아키텍처(Clean Architecture)** 혹은 **헥사고날 아키텍처(Hexagonal Architecture)**가 지향하는 구조다.
+Django는 이미 이 구조의 기본 형태를 가지고 있다.
+`app` 단위가 도메인 경계를 나타내며,
+각 앱 내부에서 역할을 분리하면 Clean Architecture로 자연스럽게 확장할 수 있다.
 
 ---
+
+## 7. 정리
+
+| 항목          | Django 특징                               |
+| ----------- | --------------------------------------- |
+| **핵심 아키텍처** | MTV (Model–Template–View)               |
+| **ORM 패턴**  | Active Record                           |
+| **구조 단위**   | 도메인 중심 app 구조                           |
+| **장점**      | 높은 생산성, 빠른 프로토타이핑, 일관된 구조               |
+| **한계**      | 복잡한 도메인 로직 분리 어려움, Fat Model 문제         |
+| **발전 방향**   | Service Layer 분리, Clean Architecture 도입 |
+
+---
+
+Django는 Active Record 기반의 MTV 구조를 사용하지만,
+앱 단위로 도메인을 분리함으로써 도메인 중심 아키텍처에 가까운 형태를 제공한다.
+이를 바탕으로 Service Layer나 Clean Architecture를 적용하면
+대규모 시스템에서도 유연하고 유지보수성 높은 백엔드 구조를 구축할 수 있다.
+
 
 
 

@@ -2,8 +2,9 @@
 title: "Django 생태계 이해"
 description: "django는 어떤 아키텍쳐 기반으로 만들어진 프레임워크일까"
 date: 2025-11-07 10:00:00 +0900
-categories: [CS, Common]
-tags: [Django, DDD, Architecture]
+categories: [Django, Architecture]
+tags: [Django, Domain, Architecture]
+image: https://velog.velcdn.com/images%2Fsicksong%2Fpost%2F3d8502be-e552-4b50-b9e8-86794b7edf8f%2Fdjango_banner.png
 ---
 
 Django는 **Python 기반의 웹 프레임워크**로, “웹 개발을 빠르고 안전하게 하기 위한 종합 세트”라고 할 수 있다.

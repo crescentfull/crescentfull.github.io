@@ -117,7 +117,7 @@ comments:
   utterances:
     repo: youngroknroll/crescentfull.github.io
     issue_term: # < url | pathname | title | ...>
-    
+
   # Giscus options › https://giscus.app
   giscus:
     repo: # <gh-username>/<repo>
@@ -186,7 +186,7 @@ defaults:
   - scope:
       path: _drafts
     values:
-      comments: false
+      comments: true
   - scope:
       path: ""
       type: tabs # see `site.collections`
